@@ -86,5 +86,14 @@
 
 	"Training": {
 		"Hello, there is nothing here yet!": "Zdravíčko, zatím tu nic není!"
+	},
+
+	"TableScreen": {
+		"Users Table": "Tabulka uživatelů",
+		"Username": "Uživatelské jméno",
+		"Email": "E-mail",
+		"Created at": "Vytvořeno",
+		"Last sign in": "Poslední přihlášení",
+		"Address": "Adresa"
 	}
 }

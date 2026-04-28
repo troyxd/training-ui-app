@@ -20,57 +20,53 @@ const loader = async () => {
 	return { count, rows };
 }
 
-const columns = [
-	{
-		title: "Id",
-		thStyle: {minWidth: "2rem"},
-		render: ({ row }) => <>{row.id}</>
-			// <Link to={`/auth/session/${row._id}`}>
-			// 	{row._id}
-			// </Link>
-	},
-	{
-		title: "Username",
-		thStyle: {minWidth: "2rem"},
-		render: ({ row }) => <div>{row.username}</div>
+const getColumns = (t) => {
+	return [
+		{
+			title: t("TableScreen|Username"),
+			thStyle: {minWidth: "2rem"},
+			render: ({ row }) => <div title={row.id}>{row.username}</div>
+		},
+		{
+			title: t("TableScreen|Email"),
+			thStyle: {minWidth: "4rem"},
+			render: ({ row }) => <div>{row.email}</div>
+		},
+		{
+			title: t("TableScreen|Created at"),
+			thStyle: {minWidth: "4rem"},
+			render: ({ row }) => <DateTime value={row.created}/>
+		},
+		{
+			title: t("TableScreen|Last sign in"),
+			thStyle: {minWidth: "4rem"},
+			render: ({ row }) => <DateTime value={row.last_sign_in}/>
+		},
+		{
+			title: t("TableScreen|Address"),
+			thStyle: {minWidth: "4rem"},
+			render: ({ row }) => <div>{row.address}</div>
+		},
+		// {
+		// 	thStyle: {width: "0px"}, // This is how you do the column for buttons
+		// 	tdStyle: {padding: "0px", whiteSpace: "nowrap"},
+		// 	render: ({ row, column }) => (<>
+		// 		<button className="btn btn-primary me-1" onClick={() => onYClick(row)}><i className="bi bi-check"></i></button>
+		// 		<button className="btn btn-danger" onClick={() => onXClick(row)}><i className="bi bi-trash"></i></button>
+		// 	</>)
+		// }
+	];
+}
 
-	},
-	{
-		title: "Email",
-		thStyle: {minWidth: "4rem"},
-		render: ({ row }) => <div>{row.email}</div>
-	},
-	{
-		title: "Created at",
-		thStyle: {minWidth: "4rem"},
-		render: ({ row }) => <DateTime value={row.created}/>
-	},
-	{
-		title: "Last sign in",
-		thStyle: {minWidth: "4rem"},
-		render: ({ row }) => <DateTime value={row.last_sign_in}/>
-	},
-	{
-		title: "Address",
-		thStyle: {minWidth: "4rem"},
-		render: ({ row }) => <div>{row.address}</div>
-	},
-	// {
-	// 	thStyle: {width: "0px"}, // This is how you do the column for buttons
-	// 	tdStyle: {padding: "0px", whiteSpace: "nowrap"},
-	// 	render: ({ row, column }) => (<>
-	// 		<button className="btn btn-primary me-1" onClick={() => onYClick(row)}><i className="bi bi-check"></i></button>
-	// 		<button className="btn btn-danger" onClick={() => onXClick(row)}><i className="bi bi-trash"></i></button>
-	// 	</>)
-	// }
-];
 
 const Header = () => {
+	const { t } = useTranslation();
+
 	return	(<>
 		<div className="flex-fill">
 			<h3>
 				<i className="bi bi-people pe-2"></i>
-				Users table
+				{t("TableScreen|Users Table")}
 			</h3>
 		</div>
 	</>);
@@ -78,6 +74,8 @@ const Header = () => {
 
 export function TableScreen(props) {
 	const { t } = useTranslation();
+
+	const columns = getColumns(t);
 
 	return (
 		<Container className='h-100'>
