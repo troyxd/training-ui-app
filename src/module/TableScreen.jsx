@@ -2,22 +2,6 @@ import { Container } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import { DataTableCard2, DateTime } from 'asab_webui_components';
 
-const loader = async () => {
-	let response = await fetch("https://devtest.teskalabs.com/data");
-	if (!response.ok) {
-		throw new Error(`HTTP error! status: ${response.status}`);
-	}
-
-	response = await response.json();
-	if (!response || !response.data) {
-		throw new Error("Invalid response format");
-	}
-
-	let count = response.count;
-	let rows = response.data;
-
-	return { count, rows };
-}
 
 const getColumns = (t) => {
 	return [
@@ -46,17 +30,8 @@ const getColumns = (t) => {
 			thStyle: {minWidth: "4rem"},
 			render: ({ row }) => <div>{row.address}</div>
 		},
-		// {
-		// 	thStyle: {width: "0px"}, // This is how you do the column for buttons
-		// 	tdStyle: {padding: "0px", whiteSpace: "nowrap"},
-		// 	render: ({ row, column }) => (<>
-		// 		<button className="btn btn-primary me-1" onClick={() => onYClick(row)}><i className="bi bi-check"></i></button>
-		// 		<button className="btn btn-danger" onClick={() => onXClick(row)}><i className="bi bi-trash"></i></button>
-		// 	</>)
-		// }
 	];
 }
-
 
 const Header = () => {
 	const { t } = useTranslation();
@@ -69,6 +44,26 @@ const Header = () => {
 			</h3>
 		</div>
 	</>);
+}
+
+const loader = async () => {
+	try {
+		const response = await fetch("https://devtest.teskalabs.com/data");
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		if (!data || !data.data) {
+			throw new Error("Invalid response format");
+		}
+	}
+	catch (error) {
+		console.error("Error fetching data: ", error);
+		return { count: 0, rows: [] };
+	}
+
+	return { count: data.count, rows: data.data };
 }
 
 export function TableScreen(props) {
