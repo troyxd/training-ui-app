@@ -1,4 +1,5 @@
 import { Container } from 'reactstrap';
+import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { DataTableCard2, DateTime } from 'asab_webui_components';
 
@@ -8,7 +9,7 @@ const getColumns = (t) => {
 		{
 			title: t("TableScreen|Username"),
 			thStyle: {minWidth: "2rem"},
-			render: ({ row }) => <div title={row.id}>{row.username}</div>
+			render: ({ row }) => <Link title={row.id} to={`/detail/${row.id}`}>{row.username}</Link>
 		},
 		{
 			title: t("TableScreen|Email"),
