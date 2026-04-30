@@ -58,13 +58,13 @@ const loader = async () => {
 		if (!data || !data.data) {
 			throw new Error("Invalid response format");
 		}
+
+		return { count: data.count, rows: data.data };
 	}
 	catch (error) {
 		console.error("Error fetching data: ", error);
 		return { count: 0, rows: [] };
 	}
-
-	return { count: data.count, rows: data.data };
 }
 
 export function TableScreen(props) {
