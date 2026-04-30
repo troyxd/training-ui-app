@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import { DataTableCard2, DateTime } from 'asab_webui_components';
