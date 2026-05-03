@@ -95,5 +95,17 @@
 		"Created at": "Vytvořeno",
 		"Last sign in": "Poslední přihlášení",
 		"Address": "Adresa"
+	},
+
+	"DetailScreen": {
+		"User details": "Podrobnosti uživatele",
+		"Username": "Uživatelské jméno",
+		"Email": "E-mail",
+		"User ID": "ID uživatele",
+		"Address": "Adresa",
+		"Created at": "Vytvořeno",
+		"Last sign in": "Poslední přihlášení",
+		"IP Address": "IP Adresa",
+		"MAC Address": "MAC Adresa"
 	}
 }

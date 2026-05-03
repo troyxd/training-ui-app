@@ -95,6 +95,18 @@
 		"Created at": "Created at",
 		"Last sign in": "Last sign in",
 		"Address": "Address"
+	},
+
+	"DetailScreen": {
+		"User details": "User details",
+		"Username": "Username",
+		"Email": "Email",
+		"User ID": "User ID",
+		"Address": "Address",
+		"Created at": "Created at",
+		"Last sign in": "Last sign in",
+		"IP Address": "IP Address",
+		"MAC Address": "MAC Address"
 	}
 }
 

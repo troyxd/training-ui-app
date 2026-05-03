@@ -22,6 +22,7 @@ function DetailField({ label, value, icon, additionalClasses }) {
 export function DetailScreen(props) {
   const { id: userId } = useParams();
   const [userData, setUserData] = useState(null);
+  const { t } = useTranslation();
 
   const fetchUserData = async (userId) => {
     try {
@@ -58,7 +59,7 @@ export function DetailScreen(props) {
             <CardHeader className='bg-primary text-white'>
               <h4 className='mb-0'>
                 <i className='bi bi-person-circle pe-2'></i>
-                User Details
+                {t("DetailScreen|User details")}
               </h4>
             </CardHeader>
             <CardBody>
@@ -66,29 +67,29 @@ export function DetailScreen(props) {
                 <Col md={6}>
                   <DetailField
                     icon="bi bi-person"
-                    label="Username"
+                    label={t("DetailScreen|Username")}
                     value={userData.username}
                   />
                   <DetailField
                     icon="bi bi-envelope"
-                    label="Email"
+                    label={t("DetailScreen|Email")}
                     value={userData.email}
                   />
                   <DetailField
                     icon="bi bi-telephone"
-                    label="Phone Number"
+                    label={t("DetailScreen|Phone Number")}
                     value={userData.phone_number}
                   />
                 </Col>
                 <Col md={6}>
                   <DetailField
                     icon="bi bi-fingerprint"
-                    label="User ID"
+                    label={t("DetailScreen|User ID")}
                     value={userData.id}
                   />
                   <DetailField
                     icon="bi bi-geo-alt"
-                    label="Address"
+                    label={t("DetailScreen|Address")}
                     value={userData.address}
                   />
                 </Col>
@@ -100,14 +101,14 @@ export function DetailScreen(props) {
                 <Col md={6}>
                   <DetailField
                     icon="bi bi-calendar-event"
-                    label="Created"
+                    label={t("DetailScreen|Created at")}
                     value={<DateTime value={userData.created}/>}
                   />
                 </Col>
                 <Col md={6}>
                   <DetailField
                     icon="bi bi-calendar-check"
-                    label="Last Sign In"
+                    label={t("DetailScreen|Last sign in")}
                     value={<DateTime value={userData.last_sign_in}/>}
                   />
                 </Col>
@@ -119,7 +120,7 @@ export function DetailScreen(props) {
                 <Col md={6}>
                   <DetailField
                     icon="bi bi-router"
-                    label="IP Address"
+                    label={t("DetailScreen|IP Address")}
                     value={userData.ip_address}
                     additionalClasses="font-monospace"
                   />
@@ -127,7 +128,7 @@ export function DetailScreen(props) {
                 <Col md={6}>
                   <DetailField
                     icon="bi bi-cpu"
-                    label="MAC Address"
+                    label={t("DetailScreen|MAC Address")}
                     value={userData.mac_address}
                     additionalClasses="font-monospace"
                   />
