@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Container, Card, CardBody, CardHeader, Row, Col } from 'reactstrap';
 import { useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { Spinner, DateTime } from 'asab_webui_components';
+import { Spinner, timeToString, useDateFNSLocale } from 'asab_webui_components';
 
 function DetailField({ label, value, icon, additionalClasses }) {
   const defaultClasses =  'fw-bold fs-6 text-break'
@@ -23,6 +23,7 @@ export function DetailScreen(props) {
   const { id: userId } = useParams();
   const [userData, setUserData] = useState(null);
   const { t } = useTranslation();
+  const locale = useDateFNSLocale();
 
   const fetchUserData = async (userId) => {
     try {
@@ -102,14 +103,14 @@ export function DetailScreen(props) {
                   <DetailField
                     icon="bi bi-calendar-event"
                     label={t("DetailScreen|Created at")}
-                    value={<DateTime value={userData.created}/>}
+                    value={timeToString(userData.created, undefined, locale)}
                   />
                 </Col>
                 <Col md={6}>
                   <DetailField
                     icon="bi bi-calendar-check"
                     label={t("DetailScreen|Last sign in")}
-                    value={<DateTime value={userData.last_sign_in}/>}
+                    value={timeToString(userData.last_sign_in, undefined, locale)}
                   />
                 </Col>
               </Row>
