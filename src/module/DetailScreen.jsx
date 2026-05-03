@@ -77,7 +77,7 @@ export function DetailScreen(props) {
                   />
                   <DetailField
                     icon="bi bi-telephone"
-                    label={t("DetailScreen|Phone Number")}
+                    label={t("DetailScreen|Phone number")}
                     value={userData.phone_number}
                   />
                 </Col>
