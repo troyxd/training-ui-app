@@ -47,9 +47,15 @@ const Header = () => {
 	</>);
 }
 
-const loader = async () => {
+const loader = async ({params}) => {
+	const url = new URL("https://devtest.teskalabs.com/data");
+
+	for (const [key, value] of Object.entries(params)) {
+		url.searchParams.append(key, value);
+	}
+
 	try {
-		const response = await fetch("https://devtest.teskalabs.com/data");
+		const response = await fetch(url);
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
