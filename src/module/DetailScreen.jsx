@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Container, Card, CardBody, CardHeader, Row, Col } from 'reactstrap';
-import { useParams } from 'react-router';
+import { Container,
+  Card,
+  CardBody,
+  CardHeader,
+  Row,
+  Col,
+  CardFooter,
+  Button
+} from 'reactstrap';
+import { useParams, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Spinner, timeToString, useDateFNSLocale } from 'asab_webui_components';
 
@@ -24,6 +32,7 @@ export function DetailScreen(props) {
   const [userData, setUserData] = useState(null);
   const { t } = useTranslation();
   const locale = useDateFNSLocale();
+  const navigate = useNavigate();
 
   const fetchUserData = async (userId) => {
     try {
@@ -56,6 +65,10 @@ export function DetailScreen(props) {
     <Container className='mt-5 mb-5'>
       <Row className='mb-4'>
         <Col xs={11} sm={10} md={9} lg={8} className='mx-auto'>
+          <Button color="link" onClick={() => navigate(-1)}>
+            <i className='bi bi-arrow-left pe-1'></i>
+            {t("DetailScreen|Back")}
+          </Button>
           <Card className='shadow-sm'>
             <CardHeader className='bg-primary text-white'>
               <h4 className='mb-0'>
